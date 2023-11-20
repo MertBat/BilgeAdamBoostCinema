@@ -1,5 +1,6 @@
 using Cinema.BLL.Mapper;
 using Cinema.BLL.Services.Actors;
+using Cinema.BLL.Services.Categories;
 using Cinema.BLL.Services.Films;
 using Cinema.Core.IRepository;
 using Cinema.DAL.Context;
@@ -33,6 +34,7 @@ namespace Cinema.API
             //Services
             builder.Services.AddTransient<IfilmService, FilmService>();
             builder.Services.AddTransient<IActorService, ActorService>();
+            builder.Services.AddTransient<ICategoryService, CategoryService>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

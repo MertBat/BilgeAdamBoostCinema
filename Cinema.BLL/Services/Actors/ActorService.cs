@@ -53,36 +53,42 @@ namespace Cinema.BLL.Services.Actors
 
         public async Task<List<ActorCreateDTO>> getAllActorsIncludFilms()
         {
+            //List<Actor> actors = await _actorRepository.GetIncludeAll();
+            //List<ActorCreateDTO> actorDTO = new();
+            //foreach (Actor actor in actors)
+            //{
+            //    ActorCreateDTO actorDto = new ActorCreateDTO()
+            //    {
+            //        ID = actor.Id,
+            //        Name = actor.Name,
+            //        AwardCount = actor.AwardCount,
+            //        BirthDate = actor.BirthDate,
+            //        Gender = actor.Gender,
+            //    };
+
+            //    if (actor.ActorFilms.Count > 0)
+            //    {
+            //        List<FilmCategoriesDTO> actorFilms = new();
+            //        foreach (ActorFilm item in actor.ActorFilms)
+            //        {
+            //            FilmCategoriesDTO filmCategory = new()
+            //            {
+            //                Id = item.FilmId,
+            //                Name = item.Film.Name
+            //            };
+            //            actorFilms.Add(filmCategory);
+            //        }
+            //        actorDto.ActorFilmList = actorFilms;
+            //    }
+
+            //    actorDTO.Add(actorDto);
+            //}
+            //return actorDTO;
+
             List<Actor> actors = await _actorRepository.GetIncludeAll();
-            List<ActorCreateDTO> actorDTO = new();
-            foreach (Actor actor in actors)
-            {
-                ActorCreateDTO actorDto = new ActorCreateDTO()
-                {
-                    ID = actor.Id,
-                    Name = actor.Name,
-                    AwardCount = actor.AwardCount,
-                    BirthDate = actor.BirthDate,
-                    Gender = actor.Gender,
-                };
 
-                if (actor.ActorFilms.Count > 0)
-                {
-                    List<FilmCategoriesDTO> actorFilms = new();
-                    foreach (ActorFilm item in actor.ActorFilms)
-                    {
-                        FilmCategoriesDTO filmCategory = new()
-                        {
-                            Id = item.FilmId,
-                            Name = item.Film.Name
-                        };
-                        actorFilms.Add(filmCategory);
-                    }
-                    actorDto.ActorFilmList = actorFilms;
-                }
+            List<ActorCreateDTO> actorDTO = actors.Select(actor => _mapper.Map<ActorCreateDTO>(actor)).ToList();
 
-                actorDTO.Add(actorDto);
-            }
             return actorDTO;
         }
 
