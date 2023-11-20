@@ -15,6 +15,8 @@ namespace Cinema.BLL.Mapper
         {
             CreateMap<Film,FilmCreateDTO>().ReverseMap();
             CreateMap<Film, FilmUpdateDTO>().ReverseMap();
+            CreateMap<Actor, ActorCreateDTO>().ReverseMap();
+            CreateMap<Actor, ActorUpdateDTO>().ReverseMap();
         }
     }
 }
